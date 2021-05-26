@@ -43,6 +43,61 @@ console.log(producto1.toString());
 let producto2 = new Producto('Doritos',4800);
 console.log(producto2.toString());
 
+//Agregar class Orden y desarrollar la relación de agregación//
+
+class Orden {
+
+    static contadorOrden = 0;
+
+    static get MAX_PRODUCTOS() {
+        return 5 ;
+    }
+    constructor() {
+        this._idOrden = ++Orden.contadorOrden;
+        this._productos = []; /*Referencia a arreglo vacío*/
+        this._contadorProductosAgregados = 0;
+     }
+
+     get idOrden (){
+         return this._idOrden;
+     }
+
+     agregarProducto(productos){
+        if (this._productos.length /*cantidad de elementos en el arreglo*/ <= Orden.MAX_PRODUCTOS) {
+             this._productos.push(producto);
+              /*Si no se ha superado se agrega un nuevo producto*/
+              
+              /*Otra forma de hacerlo*/
+              //this._productos[this._contadorProductosAgregados++] = producto;
+              /*Especificar el índice del arreglo y agregar el producto del índice */
+        }
+        else { 
+            console.log ("Máximo de productos en orden, no se pueden agregar más productos")};
+    }
+
+    calcularTotal (){
+        let totalVentas = 0;
+        for(let producto of this._productos){
+            totalVentas += producto.precio;//totalVentas = totalVentas + producto.precio
+        }
+        return totalVentas;
+    }
+
+    mostrarOrden(){
+        let productosOrden = '';
+        for (let producto of this._productos){
+            productosOrden += producto.toString() + ' ';
+        }
+        
+        console.log(`Orden: ${this._idOrden} Total: $${this.calcularTotal()}
+        , Productos: ${productosOrden}`);
+    }
+      
+}
+
+
+
+
 
 
 
