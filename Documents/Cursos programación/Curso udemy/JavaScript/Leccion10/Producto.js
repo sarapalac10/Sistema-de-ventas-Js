@@ -37,12 +37,6 @@ class Producto {
     }
 }
 
-let producto1 = new Producto('Agua con gas',2500);
-console.log(producto1.toString());
-
-let producto2 = new Producto('Doritos',4800);
-console.log(producto2.toString());
-
 //Agregar class Orden y desarrollar la relación de agregación//
 
 class Orden {
@@ -63,8 +57,8 @@ class Orden {
      }
 
      agregarProducto(productos){
-        if (this._productos.length /*cantidad de elementos en el arreglo*/ <= Orden.MAX_PRODUCTOS) {
-             this._productos.push(producto);
+        if (this._productos.length /*cantidad de elementos en el arreglo*/ < Orden.MAX_PRODUCTOS) {
+             this._productos.push(productos);
               /*Si no se ha superado se agrega un nuevo producto*/
               
               /*Otra forma de hacerlo*/
@@ -86,16 +80,38 @@ class Orden {
     mostrarOrden(){
         let productosOrden = '';
         for (let producto of this._productos){
-            productosOrden += producto.toString() + ' ';
+            productosOrden += '\n{'+ producto.toString() + '}';
         }
         
-        console.log(`Orden: ${this._idOrden} Total: $${this.calcularTotal()}
-        , Productos: ${productosOrden}`);
-    }
-      
+        console.log(`Orden # ${this._idOrden} Total: $${this.calcularTotal()},
+    Productos: ${productosOrden}`);
+    }   
 }
 
+let producto1 = new Producto('Agua con gas',2500);
+console.log(producto1.toString());
 
+let producto2 = new Producto('Doritos',4800);
+console.log(producto2.toString());
+
+let orden1 = new Orden();
+orden1.agregarProducto(producto1);
+orden1.agregarProducto(producto2);
+orden1.mostrarOrden();
+
+let orden2 = new Orden();
+let producto3 = new Producto('Coca cola',3500);
+let producto4 = new Producto('Alpinito',2400);
+orden2.agregarProducto(producto3);
+orden2.agregarProducto(producto4);
+orden2.agregarProducto(producto3);
+orden2.agregarProducto(producto1);
+orden2.agregarProducto(producto2);
+orden2.agregarProducto(producto4);
+orden2.mostrarOrden();
+
+
+//Realización de prueba//
 
 
 
