@@ -27,9 +27,13 @@ class Producto {
         this._precio = precio;
     }
 
-    toString(){
+    /*toString(){
         return (this._idProducto+ '. '
         + this._nombre + ', valor: $' + this._precio)
+    } */
+
+    toString(){
+        return `idProducto: ${this._idProducto}, nombre: ${this._nombre}, precio: $${this._precio}`;
     }
 }
 
